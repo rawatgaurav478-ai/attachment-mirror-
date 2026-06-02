@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://attachment-mirror.web.app/sitemap.xml
