@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Attachment Mirror is an immersive attachment style and emotional pattern analysis app for understanding triggers, relationship wounds, communication habits, and healing practices." />
+    <meta name="theme-color" content="#030407" />
+    <meta property="og:title" content="Attachment Mirror" />
+    <meta property="og:description" content="A cinematic psychology platform for discovering attachment patterns, emotional wounds, and secure healing practices." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="preview.png" />
+    <title>Attachment Mirror</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="neuralCanvas" aria-hidden="true"></canvas>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <section class="login-gate" id="loginGate" aria-label="Attachment Mirror login">
+      <div class="login-scene" aria-hidden="true">
+        <div class="login-ring"></div>
+        <div class="login-ring inner"></div>
+        <div class="login-crystal"></div>
+      </div>
+      <form class="glass-card login-card" id="loginForm">
+        <span class="brand-mark"></span>
+        <p class="eyebrow">Private emotional mirror</p>
+        <h1>Enter your attachment space.</h1>
+        <p>Begin a calm, cinematic reflection on your relationship patterns, triggers, wounds, and secure healing path.</p>
+        <label>
+          Name or alias
+          <input id="loginName" type="text" placeholder="e.g. Maya" autocomplete="name" required />
+        </label>
+        <label>
+          Emotional intention
+          <select id="loginIntention">
+            <option>Understand my relationship pattern</option>
+            <option>Regulate after a trigger</option>
+            <option>Analyze a conversation</option>
+            <option>Start healing old wounds</option>
+          </select>
+        </label>
+        <button class="button primary full" type="submit">Open Attachment Mirror</button>
+        <button class="button ghost full" id="guestButton" type="button">Continue privately</button>
+      </form>
+    </section>
+
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Attachment Mirror home">
+        <span class="brand-mark"></span>
+        Attachment Mirror
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#test">Test</a>
+        <a href="#analyzer">Analyzer</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#compatibility">Match</a>
+        <a href="#wounds">Wounds</a>
+        <a href="#healing">Healing</a>
+      </nav>
+      <button class="icon-pill" id="soundToggle" type="button" aria-pressed="false" title="Toggle ambient sound">
+        <span class="sound-icon">♪</span>
+        <span>Ambient off</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="stage-3d" aria-hidden="true">
+          <div class="mirror-portal">
+            <div class="portal-ring ring-one"></div>
+            <div class="portal-ring ring-two"></div>
+            <div class="portal-ring ring-three"></div>
+            <div class="mirror-plane">
+              <span class="mirror-shine"></span>
+              <span class="mirror-core"></span>
+            </div>
+          </div>
+        </div>
+        <div class="memory-fragments" aria-hidden="true">
+          <span style="--x: 8%; --y: 20%; --d: 0s">too much</span>
+          <span style="--x: 74%; --y: 16%; --d: 1.2s">come closer</span>
+          <span style="--x: 58%; --y: 74%; --d: .4s">not safe yet</span>
+          <span style="--x: 18%; --y: 72%; --d: 1.7s">prove it</span>
+          <span style="--x: 83%; --y: 58%; --d: .8s">I need space</span>
+        </div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">A psychological interface for relational self-awareness</p>
+          <h1>Your relationships are mirrors of your attachment system.</h1>
+          <p class="hero-subtitle">
+            Decode the patterns beneath longing, withdrawal, fear, repair, and the quiet places where your nervous system learned love.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#test">Discover Your Style</a>
+            <a class="button ghost" href="#analyzer">Analyze a Relationship</a>
+          </div>
+        </div>
+        <div class="hero-orbit reveal parallax-zone" aria-label="Attachment system preview">
+          <div class="glass-card hero-card depth-card">
+            <div class="card-kicker">Live mirror</div>
+            <h2 id="typingLine">Scanning emotional language</h2>
+            <div class="attachment-orb">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="micro-grid">
+              <div>
+                <strong>72%</strong>
+                <span>protest signal</span>
+              </div>
+              <div>
+                <strong>41%</strong>
+                <span>withdrawal</span>
+              </div>
+              <div>
+                <strong>88%</strong>
+                <span>repair capacity</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating-card card-a">anxious activation</div>
+          <div class="floating-card card-b">secure repair</div>
+          <div class="floating-card card-c">avoidant shield</div>
+        </div>
+      </section>
+
+      <section class="quote-strip reveal" aria-live="polite">
+        <span id="quoteText">The pattern is not the enemy. It is a map back to safety.</span>
+      </section>
+
+      <section class="section split" id="test">
+        <div class="section-copy reveal">
+          <p class="eyebrow">Attachment Style Test</p>
+          <h2>Move through relationship scenes, not sterile questions.</h2>
+          <p>
+            Each slider captures a nervous-system response: reach, freeze, explain, disappear, repair, or stay present.
+          </p>
+        </div>
+        <div class="glass-card test-panel reveal tilt-card">
+          <div class="panel-head">
+            <div>
+              <p class="card-kicker">Scene <span id="questionNumber">1</span> of <span id="questionTotal">8</span></p>
+              <h3 id="questionText"></h3>
+            </div>
+            <div class="progress-ring" style="--progress: 12%">
+              <span id="progressLabel">12%</span>
+            </div>
+          </div>
+          <div class="slider-wrap">
+            <label for="answerSlider">
+              <span id="lowLabel">I soften</span>
+              <span id="highLabel">I protect</span>
+            </label>
+            <input id="answerSlider" type="range" min="0" max="100" value="50" />
+            <div class="slider-state" id="sliderState">Balanced response</div>
+          </div>
+          <div class="panel-actions">
+            <button class="button ghost" id="prevQuestion" type="button">Back</button>
+            <button class="button primary" id="nextQuestion" type="button">Next Scene</button>
+          </div>
+          <div class="result-card" id="styleResult" hidden></div>
+        </div>
+      </section>
+
+      <section class="section" id="analyzer">
+        <div class="section-heading reveal">
+          <p class="eyebrow">AI Emotional Analyzer</p>
+          <h2>Paste the message you keep rereading.</h2>
+          <p>Attachment Mirror reads for dependency cues, protest language, mixed signals, withdrawal, emotional maturity, and repair attempts.</p>
+        </div>
+        <div class="analyzer-grid">
+          <div class="glass-card reveal tilt-card">
+            <label class="input-label" for="messageInput">Conversation or message</label>
+            <textarea id="messageInput" rows="9" placeholder="Example: I know you're busy, but I feel like I keep reaching and you keep disappearing..."></textarea>
+            <button class="button primary full" id="analyzeButton" type="button">Analyze Emotional Pattern</button>
+          </div>
+          <div class="glass-card reveal analysis-output tilt-card">
+            <div class="heatmap" id="heatmap" aria-label="Emotional heatmap"></div>
+            <div id="analysisInsights" class="insight-list">
+              <p class="muted">Your analysis will appear here with color-coded indicators and behavioral interpretation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split reverse" id="timeline">
+        <div class="glass-card reveal timeline-card tilt-card">
+          <div class="panel-head">
+            <div>
+              <p class="card-kicker">Relationship Timeline</p>
+              <h3>Push-pull cycle visualization</h3>
+            </div>
+            <button class="mini-button" id="shuffleTimeline" type="button">Repattern</button>
+          </div>
+          <svg class="emotion-graph" id="emotionGraph" viewBox="0 0 680 280" role="img" aria-label="Animated emotional highs and lows graph"></svg>
+          <div class="timeline-events" id="timelineEvents"></div>
+        </div>
+        <div class="section-copy reveal">
+          <p class="eyebrow">Emotional highs and lows</p>
+          <h2>See the cycle before it becomes the fight.</h2>
+          <p>
+            Track closeness spikes, ghosting dips, rupture, repair, dependency growth, and the moment both people start protecting themselves.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="compatibility">
+        <div class="section-heading reveal">
+          <p class="eyebrow">AI Relationship Match</p>
+          <h2>Compare two attachment systems in one relationship mirror.</h2>
+          <p>Choose each person’s attachment style, write what each of you is facing, and receive a compatibility score out of 500 with repair guidance.</p>
+        </div>
+        <div class="match-grid">
+          <div class="glass-card reveal match-person tilt-card">
+            <p class="card-kicker">Person A</p>
+            <label>
+              Attachment style
+              <select id="personAStyle">
+                <option value="secure">Secure</option>
+                <option value="anxious">Anxious</option>
+                <option value="avoidant">Avoidant</option>
+                <option value="fearful">Fearful Avoidant</option>
+              </select>
+            </label>
+            <label>
+              Problem they are facing
+              <textarea id="personANote" rows="7" placeholder="I feel anxious when they take hours to reply, and I start asking for reassurance..."></textarea>
+            </label>
+          </div>
+          <div class="glass-card reveal match-person tilt-card">
+            <p class="card-kicker">Person B</p>
+            <label>
+              Attachment style
+              <select id="personBStyle">
+                <option value="secure">Secure</option>
+                <option value="anxious">Anxious</option>
+                <option value="avoidant">Avoidant</option>
+                <option value="fearful">Fearful Avoidant</option>
+              </select>
+            </label>
+            <label>
+              Problem they are facing
+              <textarea id="personBNote" rows="7" placeholder="I care about them, but when conflict gets intense I shut down and need space..."></textarea>
+            </label>
+          </div>
+          <div class="glass-card reveal match-result tilt-card">
+            <div class="panel-head">
+              <div>
+                <p class="card-kicker">Compatibility mirror</p>
+                <h3>Relationship score</h3>
+              </div>
+              <div class="score-orb" id="relationshipScoreOrb">
+                <strong id="relationshipScore">--</strong>
+                <span>/500</span>
+              </div>
+            </div>
+            <button class="button primary full" id="matchButton" type="button">Analyze Relationship Match</button>
+            <div class="match-bars" id="matchBars"></div>
+            <div class="match-insights" id="matchInsights">
+              <p class="muted">Your compatibility reading will show emotional fit, conflict risk, communication pattern, repair potential, and a secure next step.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="wounds">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Childhood Wound Scanner</p>
+          <h2>Trace reactions back to their emotional origin.</h2>
+        </div>
+        <div class="wound-grid">
+          <form class="glass-card reveal wound-form tilt-card" id="woundForm">
+            <label>
+              When you needed comfort as a child, what happened most often?
+              <select name="comfort">
+                <option value="secure">Someone noticed and helped me regulate.</option>
+                <option value="neglect">My feelings were minimized or ignored.</option>
+                <option value="criticism">I was corrected, blamed, or told I was too sensitive.</option>
+                <option value="inconsistent">Sometimes I was held, sometimes I was alone.</option>
+              </select>
+            </label>
+            <label>
+              Love felt most available when I was...
+              <select name="love">
+                <option value="secure">Being myself.</option>
+                <option value="achieve">Achieving, pleasing, or performing.</option>
+                <option value="quiet">Not needing too much.</option>
+                <option value="chasing">Trying hard to keep attention.</option>
+              </select>
+            </label>
+            <label>
+              In conflict, my body learned to...
+              <select name="conflict">
+                <option value="repair">Stay present and repair.</option>
+                <option value="freeze">Freeze and scan for danger.</option>
+                <option value="pursue">Pursue until I feel reassured.</option>
+                <option value="leave">Detach, go quiet, or leave emotionally.</option>
+              </select>
+            </label>
+            <button class="button primary full" type="submit">Scan Attachment Origins</button>
+          </form>
+          <div class="glass-card reveal wound-output tilt-card" id="woundOutput">
+            <p class="muted">Choose the patterns that feel closest. The scanner will map likely wounds, defenses, coping patterns, and healing themes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="healing">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Healing Dashboard</p>
+          <h2>Practice secure attachment in the body, not just the mind.</h2>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card reveal breathing-card tilt-card">
+            <p class="card-kicker">Nervous system</p>
+            <h3>Breathing orb</h3>
+            <button class="breath-orb" id="breathOrb" type="button" aria-label="Start breathing exercise">
+              <span id="breathText">Breathe</span>
+            </button>
+          </div>
+          <div class="glass-card reveal progress-card tilt-card">
+            <p class="card-kicker">Secure streak</p>
+            <div class="big-ring" style="--value: 68%">
+              <span>12</span>
+              <small>days</small>
+            </div>
+            <p>Reflection consistency is building a new internal baseline.</p>
+          </div>
+          <div class="glass-card reveal exercise-card tilt-card">
+            <p class="card-kicker">Daily exercises</p>
+            <ul class="check-list" id="exerciseList">
+              <li><button type="button"></button><span>Name the fear beneath the reaction.</span></li>
+              <li><button type="button"></button><span>Send one secure communication rewrite.</span></li>
+              <li><button type="button"></button><span>Practice a boundary without overexplaining.</span></li>
+              <li><button type="button"></button><span>Write one self-worth counter-belief.</span></li>
+            </ul>
+          </div>
+          <div class="glass-card reveal journal-card tilt-card">
+            <p class="card-kicker">Reflection journal</p>
+            <textarea id="journalInput" rows="5" placeholder="Today my attachment system activated when..."></textarea>
+            <div class="journal-prompt" id="journalPrompt">Prompt: What would secure-you ask for with warmth and clarity?</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compare-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Secure vs Unhealthy Comparison</p>
+          <h2>Same feeling. Different nervous-system strategy.</h2>
+        </div>
+        <div class="compare-grid">
+          <article class="glass-card compare-card reveal tilt-card">
+            <span class="status green"></span>
+            <h3>Secure</h3>
+            <p>Names needs directly, tolerates space, repairs rupture, and does not confuse calm with disinterest.</p>
+          </article>
+          <article class="glass-card compare-card reveal tilt-card">
+            <span class="status yellow"></span>
+            <h3>Anxious</h3>
+            <p>Seeks reassurance quickly, reads silence as threat, over-functions emotionally, and escalates for closeness.</p>
+          </article>
+          <article class="glass-card compare-card reveal tilt-card">
+            <span class="status purple"></span>
+            <h3>Avoidant</h3>
+            <p>Protects autonomy, minimizes needs, delays responses, and may experience intimacy as pressure.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <aside class="chat-companion" aria-label="Emotional AI chat companion">
+      <button class="chat-toggle" id="chatToggle" type="button">Mirror AI</button>
+      <div class="chat-window" id="chatWindow" hidden>
+        <div class="chat-head">
+          <strong>Mirror AI</strong>
+          <span>calm companion</span>
+        </div>
+        <div class="chat-log" id="chatLog">
+          <div class="chat-message ai">Before we analyze the relationship, what feeling is loudest in your body right now?</div>
+        </div>
+        <form class="chat-form" id="chatForm">
+          <input id="chatInput" type="text" placeholder="Tell me what happened..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </aside>
+
+    <script src="app.js"></script>
+  </body>
+</html>
